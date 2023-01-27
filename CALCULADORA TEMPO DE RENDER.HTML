@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+ <style>
+      /* Estilos gerais da página */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Estilos para o formulário */
+      form {
+        width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      /* Estilos para os labels */
+      label {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      /* Estilos para os inputs */
+      input[type="number"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+      }
+
+      /* Estilos para o botão de envio */
+      button[type="button"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size:18px;
+}
+
+  /* Estilos para a caixa de diálogo de resultado */
+  #resultado {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    display: none;
+  }
+</style>
+
+
+
+
+ </head>
+  <body>
+    <form>
+      <label for="numComputadores">Número de computadores:</label>
+      <input type="number" id="numComputadores" name="numComputadores"><br>
+      <label for="numFrames">Número de frames:</label>
+      <input type="number" id="numFrames" name="numFrames"><br>
+      <label for="tempoPorFrame">Tempo por frame (em segundos):</label>
+      <input type="number" id="tempoPorFrame" name="tempoPorFrame"><br>
+      <button type="button" onclick="calcularTempo()">Calcular tempo de render</button>
+    </form> 
+    <div id="resultado"></div>
+<script>
+  function calcularTempo() {
+    var numComputadores = parseInt(document.getElementById("numComputadores").value);
+    var numFrames = parseInt(document.getElementById("numFrames").value);
+    var tempoPorFrame = parseInt(document.getElementById("tempoPorFrame").value);
+
+    var tempoTotal = (numFrames * tempoPorFrame) / numComputadores;
+    var horas = Math.floor(tempoTotal / 3600);
+    var minutos = Math.floor((tempoTotal % 3600) / 60);
+    var segundos = (tempoTotal % 3600) % 60;
+
+    if (segundos >= 60) {
+        minutos = minutos + 1;
+        segundos = segundos - 60;
+    }
+    if (minutos >= 60) {
+        horas = horas + 1;
+        minutos = minutos - 60;
+    }
+
+    var resultado = "O tempo total de renderização será: " + horas + " hora(s) " + minutos + " minuto(s) " + segundos + " segundo(s)";
+    document.getElementById("resultado").innerHTML = resultado;
+    document.getElementById("resultado").style.display = "block";
+  }
+</script>
+
+<div style="text-align: center;">DESENVOLVIDO POR: LEANDRO MENZEN <a href="https://www.instagram.com/leandromenzen/">@leandromenzen </a>
+</div>
+
+  </body>
+</html>
